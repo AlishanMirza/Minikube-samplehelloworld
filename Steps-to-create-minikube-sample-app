@@ -1,0 +1,16 @@
+#Steps to create 
+choco install minkube #make sure you have choco installed on your window's system.
+
+minikube start
+#Add an alias to make your life easier
+alias kubectl="minikube kubectl --"
+
+kubectl create deployment hello-minikube --image=kicbase/echo-server:1.0
+kubectl expose deployment hello-minikube --type=NodePort --port=8080
+
+#Forwarding port - http://localhost:7080/
+kubectl port-forward service/hello-minikube 7080:8080
+
+#your minikube sample application is deployed
+
+minikube stop
